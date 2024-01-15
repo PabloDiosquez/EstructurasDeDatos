@@ -75,10 +75,5 @@ namespace Biblioteca
 
             return desencolado;
         }
-
-        public int Length()
-        {
-            return this.encolados.Count;
-        }
     }
 }

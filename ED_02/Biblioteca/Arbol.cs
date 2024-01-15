@@ -107,47 +107,45 @@ namespace Biblioteca
         // encuentran en el nivel que posee la mayor cantidad de nodos.
         public int ancho()
         {
-        //    if (this.getRaiz() is null)
-        //    {
-        //        return -1;  // Otra opción podría ser lanzar una excepción en lugar de devolver -1
-        //    }
-
-            int ancho = 0;
-
             ColaGenerica<Arbol> encolados = new ColaGenerica<Arbol>();
 
-            encolados.Encolar(new Arbol(this.getValorRaiz()));
+            encolados.Encolar(this);
 
             encolados.Encolar(null);
 
+            int ancho          = 0; // Ancho del árbol.
+
+            int anchoAlMomento = 0; // Número de nodos de cada nivel
+
             while (!encolados.EsVacia())
             {
-                int nroNodosDelNivel = encolados.Length() - 1;  // Restamos 1 para excluir el elemento nulo
+                Arbol desencolado = encolados.Desencolar();
 
-                if (nroNodosDelNivel > ancho)
+                if (desencolado is not null)
                 {
-                    ancho = nroNodosDelNivel;
-                }
+                    anchoAlMomento++;
 
-                while (encolados.Length() > 0)
-                {
-                    Arbol desencolado = encolados.Desencolar();
-
-                    if (desencolado is not null)
+                    if (!desencolado.esHoja())
                     {
                         foreach (Arbol hijo in desencolado.getHijos())
                         {
-                            if (hijo != null)
-                            {
-                                encolados.Encolar(hijo);
-                            }
+                            encolados.Encolar(hijo);
                         }
                     }
                 }
-
-                if (!encolados.EsVacia())
+                else 
                 {
-                    encolados.Encolar(null);  // Marcar el final del nivel
+                    if (!encolados.EsVacia())
+                    {
+                        encolados.Encolar(null);
+                    }
+
+                    if (anchoAlMomento > ancho)
+                    {
+                        ancho = anchoAlMomento;
+                    }
+
+                    anchoAlMomento = 0;
                 }
             }
             return ancho;

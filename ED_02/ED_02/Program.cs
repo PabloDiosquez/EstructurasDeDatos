@@ -14,7 +14,9 @@ namespace ED_02
             Arbol subArbol1 = new Arbol(5);
             Arbol subArbol2 = new Arbol(11);
             Arbol subArbol3 = new Arbol(23);
-            Arbol subArbol4 = new Arbol(19);
+            Arbol subArbol4 = new Arbol(100);
+            Arbol subArbol5 = new Arbol(15);
+            Arbol subArbol6 = new Arbol(29);
 
             // Agregar subárboles al árbol principal
             arbolPrincipal.agregarHijo(subArbol1);
@@ -24,7 +26,9 @@ namespace ED_02
             subArbol2.agregarHijo(subArbol3);
 
             // Agregar subárbol4 como hijo de subárbol3
-            subArbol3.agregarHijo(subArbol4);
+            subArbol2.agregarHijo(subArbol4);
+            subArbol2.agregarHijo(subArbol5);
+            subArbol2.agregarHijo(subArbol6);
 
             // Imprimir el árbol por niveles
             Console.WriteLine("Árbol por niveles:");
